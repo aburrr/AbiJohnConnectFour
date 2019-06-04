@@ -5,19 +5,31 @@ import java.awt.event.*;
 
 public class ConnectFour extends JPanel{
 
-
-
     private int[][] board;
-    private boolean[][] isYellow;
-    private boolean[][] isRed;
     private int col;
 
 
     public ConnectFour(int w, int h) {
         board = new int[3][3];
         this.col = 0;
+    }
 
+    public void draw(Graphics2D g2){
+        boolean color = true;
+        if (color == true){
+            g2.setColor(Color.RED);
+        }else{
+            g2.setColor(Color.YELLOW);
+        }
 
+        for (int r = 0; board.length < 0; r++) {
+            for (int c = 0; board[0].length < 0 ; c++) {
+                if (board[r][c] == 1){
+                    g2.fillOval(100 * r + 200, 100 * c, 100, 100);
+                    color = !color;
+                }
+            }
+        }
     }
 
 
@@ -36,11 +48,5 @@ public class ConnectFour extends JPanel{
         g2.drawLine(0,500,700,500);
         g2.drawLine(0,600,700,600);
         g2.drawLine(0,700,700,700);
-
-
-
-        //Rows
-
-
-}
+    }
 }
