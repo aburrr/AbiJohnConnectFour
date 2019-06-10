@@ -5,7 +5,6 @@ import java.awt.event.*;
 
 public class ConnectFour extends JPanel{
     private int[][] board = new int[6][7];
-    private Spaces[][] spaces = new Spaces[6][7];
     private boolean color;
 
 
