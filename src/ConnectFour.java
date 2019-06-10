@@ -11,11 +11,9 @@ public class ConnectFour extends JPanel{
 
     public ConnectFour(int w, int h) {
         setUpMouseListener();
-
     }
 
     public void setUpMouseListener(){
-
         addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -149,8 +147,8 @@ public class ConnectFour extends JPanel{
         }
         return false;
     }
-    public boolean winDiag(){
 
+    public boolean winDiag(){
         int y = board.length;
         int x = board[0].length;
         for (int r = 0; r < board.length - 3; r++) {
@@ -162,6 +160,7 @@ public class ConnectFour extends JPanel{
                 }
             }
         }
+
         for (int r = 0; r < y - 3; r++) {
             for (int c = 3; c < x; c++) {
                 if(board[r][c] != 0){
@@ -179,46 +178,31 @@ public class ConnectFour extends JPanel{
 
         //background
         g2.setColor(new Color(0, 5, 180));
-        g2.fillRect(0,0, 700, 800);
+        g2.fillRect(0, 0, 700, 800);
 
         //lines
-        for (int r = 0; r < board.length; r++) {
-            for (int c = 0; c < board[r].length; c++) {
-                if(board[r][c] == 1){
-                    g2.setColor(Color.red);
-                    g2.fillOval(100 * c + 10, 100 * r + 210, 80, 80);
-                }else if(board[r][c] == 2){
-                    g2.setColor(Color.yellow);
-                    g2.fillOval(100 * c + 10, 100 * r + 210, 80, 80);
-                }
-
-            }
-        }
-
-
-
         g2.setColor(Color.BLACK);
         g2.setStroke(new BasicStroke(4));
-        g2.drawLine(100,200,100,800);
-        g2.drawLine(200,200,200,800);
-        g2.drawLine(300,200,300,800);
-        g2.drawLine(400,200,400,800);
-        g2.drawLine(500,200,500,800);
-        g2.drawLine(600,200,600,800);
-        g2.drawLine(0,200,700,200);
-        g2.drawLine(0,300,700,300);
-        g2.drawLine(0,400,700,400);
-        g2.drawLine(0,500,700,500);
-        g2.drawLine(0,600,700,600);
-        g2.drawLine(0,700,700,700);
+        g2.drawLine(100, 200, 100, 800);
+        g2.drawLine(200, 200, 200, 800);
+        g2.drawLine(300, 200, 300, 800);
+        g2.drawLine(400, 200, 400, 800);
+        g2.drawLine(500, 200, 500, 800);
+        g2.drawLine(600, 200, 600, 800);
+        g2.drawLine(0, 200, 700, 200);
+        g2.drawLine(0, 300, 700, 300);
+        g2.drawLine(0, 400, 700, 400);
+        g2.drawLine(0, 500, 700, 500);
+        g2.drawLine(0, 600, 700, 600);
+        g2.drawLine(0, 700, 700, 700);
 
         //dots
         for (int r = 0; r < board.length; r++) {
             for (int c = 0; c < board[r].length; c++) {
-                if(board[r][c] == 1){
+                if (board[r][c] == 1) {
                     g2.setColor(Color.red);
                     g2.fillOval(100 * c + 10, 100 * r + 210, 80, 80);
-                }else if(board[r][c] == 2){
+                } else if (board[r][c] == 2) {
                     g2.setColor(Color.yellow);
                     g2.fillOval(100 * c + 10, 100 * r + 210, 80, 80);
                 }
@@ -226,17 +210,49 @@ public class ConnectFour extends JPanel{
             }
         }
 
-        if(winVert()){
-            g2.setColor(new Color(251, 249, 255, 225));
-            g2.fillRect(0, 0, 700, 800);
-            g2.setColor(Color.BLACK);
-            g2.setFont(new Font("Serif", Font.BOLD, 80));
-            g2.drawString("You Won!", 173, 400);
-            g2.setFont(new Font("Serif", Font.BOLD, 50));
-            g2.drawString("Press SPACE to Restart", 93, 470);
-        }
+        g2.setColor(Color.BLACK);
+        g2.fillRect(10, 125, 80, 50);
+        g2.setColor(Color.white);
+        g2.setFont(new Font("Serif", Font.BOLD, 15));
+        g2.drawString("Click Here", 15, 155);
 
-        if(winHori()){
+        g2.setColor(Color.BLACK);
+        g2.fillRect(110, 125, 80, 50);
+        g2.setColor(Color.white);
+        g2.setFont(new Font("Serif", Font.BOLD, 15));
+        g2.drawString("Click Here", 115, 155);
+
+        g2.setColor(Color.BLACK);
+        g2.fillRect(210, 125, 80, 50);
+        g2.setColor(Color.white);
+        g2.setFont(new Font("Serif", Font.BOLD, 15));
+        g2.drawString("Click Here", 215, 155);
+
+        g2.setColor(Color.BLACK);
+        g2.fillRect(310, 125, 80, 50);
+        g2.setColor(Color.white);
+        g2.setFont(new Font("Serif", Font.BOLD, 15));
+        g2.drawString("Click Here", 315, 155);
+
+        g2.setColor(Color.BLACK);
+        g2.fillRect(410, 125, 80, 50);
+        g2.setColor(Color.white);
+        g2.setFont(new Font("Serif", Font.BOLD, 15));
+        g2.drawString("Click Here", 415, 155);
+
+        g2.setColor(Color.BLACK);
+        g2.fillRect(510, 125, 80, 50);
+        g2.setColor(Color.white);
+        g2.setFont(new Font("Serif", Font.BOLD, 15));
+        g2.drawString("Click Here", 515, 155);
+
+        g2.setColor(Color.BLACK);
+        g2.fillRect(610, 125, 80, 50);
+        g2.setColor(Color.white);
+        g2.setFont(new Font("Serif", Font.BOLD, 15));
+        g2.drawString("Click Here", 615, 155);
+
+        if (winVert() || winHori() || winDiag()) {
             g2.setColor(new Color(251, 249, 255, 225));
             g2.fillRect(0, 0, 700, 800);
             g2.setColor(Color.BLACK);
