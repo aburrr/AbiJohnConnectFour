@@ -5,7 +5,6 @@ import java.awt.event.*;
 
 public class ConnectFour extends JPanel{
     private int[][] board = new int[6][7];
-    private Spaces[][] spaces = new Spaces[6][7];
     private boolean color;
 
 
@@ -144,15 +143,36 @@ public class ConnectFour extends JPanel{
         for (int r = 0; r < board.length - 3; r++) {
             for (int c = 0; c < board[0].length; c++) {
                 if(board[r][c] != 0 && board[r][c] == board[r+1][c] && board[r][c] == board[r+2][c] && board[r][c] == board[r+3][c]){
-                    System.out.println("WIN");
                     return true;
                 }
             }
         }
-
         return false;
     }
+    public boolean winDiag(){
 
+        int y = board.length;
+        int x = board[0].length;
+        for (int r = 0; r < board.length - 3; r++) {
+            for (int c = 0; c < board[0].length - 3; c++) {
+                if(board[r][c] != 0){
+                    if(board[r][c] == board[r+1][c+1] && board[r][c] == board[r+2][c+2] && board[r][c] == board[r+3][c+3]){
+                        return true;
+                    }
+                }
+            }
+        }
+        for (int r = 0; r < y - 3; r++) {
+            for (int c = 3; c < x; c++) {
+                if(board[r][c] != 0){
+                    if(board[r][c] == board[r+1][c-1] && board[r][c] == board[r+2][c-2] && board[r][c] == board[r+3][c-3]){
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
 
     public void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
@@ -173,9 +193,7 @@ public class ConnectFour extends JPanel{
 
             }
         }
-        if(winVert()){
-            g2.drawString("WIN", 50, 50);
-        }
+
 
 
         g2.setColor(Color.BLACK);
