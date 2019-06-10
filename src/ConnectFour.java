@@ -5,7 +5,6 @@ import java.awt.event.*;
 
 public class ConnectFour extends JPanel{
     private int[][] board = new int[6][7];
-    private Spaces[][] spaces = new Spaces[6][7];
     private boolean color;
 
 
@@ -161,23 +160,7 @@ public class ConnectFour extends JPanel{
         g2.setColor(new Color(0, 5, 180));
         g2.fillRect(0,0, 700, 800);
 
-        for (int r = 0; r < board.length; r++) {
-            for (int c = 0; c < board[r].length; c++) {
-                if(board[r][c] == 1){
-                    g2.setColor(Color.red);
-                    g2.fillOval(100 * c + 10, 100 * r + 210, 80, 80);
-                }else if(board[r][c] == 2){
-                    g2.setColor(Color.yellow);
-                    g2.fillOval(100 * c + 10, 100 * r + 210, 80, 80);
-                }
-
-            }
-        }
-        if(winVert()){
-            g2.drawString("WIN", 50, 50);
-        }
-
-
+        //lines
         g2.setColor(Color.BLACK);
         g2.setStroke(new BasicStroke(4));
         g2.drawLine(100,200,100,800);
@@ -192,5 +175,39 @@ public class ConnectFour extends JPanel{
         g2.drawLine(0,500,700,500);
         g2.drawLine(0,600,700,600);
         g2.drawLine(0,700,700,700);
+
+        //dots
+        for (int r = 0; r < board.length; r++) {
+            for (int c = 0; c < board[r].length; c++) {
+                if(board[r][c] == 1){
+                    g2.setColor(Color.red);
+                    g2.fillOval(100 * c + 10, 100 * r + 210, 80, 80);
+                }else if(board[r][c] == 2){
+                    g2.setColor(Color.yellow);
+                    g2.fillOval(100 * c + 10, 100 * r + 210, 80, 80);
+                }
+
+            }
+        }
+
+        if(winVert()){
+            g2.setColor(new Color(251, 249, 255, 225));
+            g2.fillRect(0, 0, 700, 800);
+            g2.setColor(Color.BLACK);
+            g2.setFont(new Font("Serif", Font.BOLD, 80));
+            g2.drawString("You Won!", 173, 400);
+            g2.setFont(new Font("Serif", Font.BOLD, 50));
+            g2.drawString("Press SPACE to Restart", 93, 470);
+        }
+
+        if(winHori()){
+            g2.setColor(new Color(251, 249, 255, 225));
+            g2.fillRect(0, 0, 700, 800);
+            g2.setColor(Color.BLACK);
+            g2.setFont(new Font("Serif", Font.BOLD, 80));
+            g2.drawString("You Won!", 173, 400);
+            g2.setFont(new Font("Serif", Font.BOLD, 50));
+            g2.drawString("Press SPACE to Restart", 93, 470);
+        }
     }
 }
