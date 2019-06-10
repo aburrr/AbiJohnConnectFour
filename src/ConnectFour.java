@@ -6,8 +6,7 @@ import java.awt.event.*;
 public class ConnectFour extends JPanel{
     private int[][] board = new int[6][7];
     private Spaces[][] spaces = new Spaces[6][7];
-    private boolean color, WIN;
-
+    private boolean color;
 
 
 
@@ -129,6 +128,17 @@ public class ConnectFour extends JPanel{
 
     }
 
+    public boolean winHori(){
+        for (int r = 0; r < board.length; r++) {
+            for (int c = 0; c < board[0].length - 3; c++) {
+                if (board[r][c] != 0 && board[r][c] == board[r][c + 1] && board[r][c] == board[r][c + 2] && board[r][c]
+                        == board[r][c + 3]) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
     public boolean winVert(){
         for (int r = 0; r < board.length - 3; r++) {
@@ -146,14 +156,19 @@ public class ConnectFour extends JPanel{
 
     public void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
+
+        //background
+        g2.setColor(new Color(0, 5, 180));
+        g2.fillRect(0,0, 700, 800);
+
         for (int r = 0; r < board.length; r++) {
             for (int c = 0; c < board[r].length; c++) {
                 if(board[r][c] == 1){
                     g2.setColor(Color.red);
-                    g2.fillOval(100 * c , 100 * r + 200, 100, 100);
+                    g2.fillOval(100 * c + 10, 100 * r + 210, 80, 80);
                 }else if(board[r][c] == 2){
                     g2.setColor(Color.yellow);
-                    g2.fillOval(100 * c , 100 * r + 200, 100, 100);
+                    g2.fillOval(100 * c + 10, 100 * r + 210, 80, 80);
                 }
 
             }
@@ -164,6 +179,7 @@ public class ConnectFour extends JPanel{
 
 
         g2.setColor(Color.BLACK);
+        g2.setStroke(new BasicStroke(4));
         g2.drawLine(100,200,100,800);
         g2.drawLine(200,200,200,800);
         g2.drawLine(300,200,300,800);
