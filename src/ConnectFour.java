@@ -6,7 +6,8 @@ import java.awt.event.*;
 public class ConnectFour extends JPanel{
     private int[][] board = new int[6][7];
     private Spaces[][] spaces = new Spaces[6][7];
-    private boolean color;
+    private boolean color, WIN;
+
 
 
 
@@ -22,19 +23,19 @@ public class ConnectFour extends JPanel{
             public void mouseClicked(MouseEvent e) {
                 int x = e.getX();
                 int y = e.getY();
-                    for (int r = board.length - 1; r > 0; r--) {
-                        if(x < 100 && y < 200 && y > 100){
-                            if(board[r][0] == 0 && color == false){
-                                board[r][0] = 1;
-                                break;
-                            }else if(board[r][0] == 0 && color == true){
-                                board[r][0] = 2;
-                                break;
-                            }
-
+                for (int r = board.length - 1; r >= 0; r--) {
+                    if(x < 100 && y < 200 && y > 100){
+                        if(board[r][0] == 0 && color == false){
+                            board[r][0] = 1;
+                            break;
+                        }else if(board[r][0] == 0 && color == true){
+                            board[r][0] = 2;
+                            break;
                         }
+
                     }
-                for (int r = board.length -1; r > 0; r--) {
+                }
+                for (int r = board.length -1; r >= 0; r--) {
                     if(x < 200 && x > 100 && y < 200 && y > 100){
                         if(board[r][1] == 0 && color == false){
                             board[r][1] = 1;
@@ -45,7 +46,7 @@ public class ConnectFour extends JPanel{
                         }
                     }
                 }
-                for (int r = board.length - 1; r > 0; r--) {
+                for (int r = board.length - 1; r >= 0; r--) {
                     if(x < 300 && x > 200 && y < 200 && y > 100){
                         if(board[r][2] == 0 && color == false){
                             board[r][2] = 1;
@@ -56,7 +57,7 @@ public class ConnectFour extends JPanel{
                         }
                     }
                 }
-                for (int r = board.length -1; r > 0; r--) {
+                for (int r = board.length -1; r >= 0; r--) {
                     if(x < 400 && x > 300 && y < 200 && y > 100){
                         if(board[r][3] == 0 && color == false){
                             board[r][3] = 1;
@@ -67,7 +68,7 @@ public class ConnectFour extends JPanel{
                         }
                     }
                 }
-                for (int r = board.length - 1; r > 0; r++) {
+                for (int r = board.length - 1; r >= 0; r--) {
                     if(x < 500 && x > 400 && y < 200 && y > 100){
                         if(board[r][4] == 0 && color == false){
                             board[r][4] = 1;
@@ -78,7 +79,7 @@ public class ConnectFour extends JPanel{
                         }
                     }
                 }
-                for (int r = board.length - 1; r > 0; r--) {
+                for (int r = board.length - 1; r >= 0; r--) {
                     if(x < 600 && x > 500 && y < 200 && y > 100){
                         if(board[r][5] == 0 && color == false){
                             board[r][5] = 1;
@@ -89,7 +90,7 @@ public class ConnectFour extends JPanel{
                         }
                     }
                 }
-                for (int r = board.length - 1; r > 0; r--) {
+                for (int r = board.length - 1; r >= 0; r--) {
                     if(x < 700 && x > 600 && y < 200 && y > 100){
                         if(board[r][6] == 0 && color == false){
                             board[r][6] = 1;
@@ -100,7 +101,8 @@ public class ConnectFour extends JPanel{
                         }
                     }
                 }
-            color = !color;
+                color = !color;
+                repaint();
             }
 
             @Override
@@ -128,6 +130,19 @@ public class ConnectFour extends JPanel{
     }
 
 
+    public boolean winVert(){
+        for (int r = 0; r < board.length - 3; r++) {
+            for (int c = 0; c < board[0].length; c++) {
+                if(board[r][c] != 0 && board[r][c] == board[r+1][c] && board[r][c] == board[r+2][c] && board[r][c] == board[r+3][c]){
+                    System.out.println("WIN");
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
 
     public void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
@@ -142,6 +157,9 @@ public class ConnectFour extends JPanel{
                 }
 
             }
+        }
+        if(winVert()){
+            g2.drawString("WIN", 50, 50);
         }
 
 
@@ -158,6 +176,5 @@ public class ConnectFour extends JPanel{
         g2.drawLine(0,500,700,500);
         g2.drawLine(0,600,700,600);
         g2.drawLine(0,700,700,700);
-        repaint();
     }
 }
