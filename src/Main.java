@@ -5,6 +5,8 @@ import sun.audio.ContinuousAudioDataStream;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -28,7 +30,12 @@ public class Main {
         frame.pack();
         frame.setVisible(true);
 
+
     }
+    public static class AL implements ActionListener{
+        public final void actionPerformed(ActionEvent e){
+            music();
+        }
     public static void music()
     {
 
