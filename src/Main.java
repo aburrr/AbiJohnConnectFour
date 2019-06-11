@@ -32,10 +32,7 @@ public class Main {
 
 
     }
-    public static class AL implements ActionListener{
-        public final void actionPerformed(ActionEvent e){
-            music();
-        }
+
     public static void music()
     {
 
