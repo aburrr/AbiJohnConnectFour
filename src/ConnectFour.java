@@ -4,20 +4,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-
 public class ConnectFour extends JPanel{
     private int[][] board = new int[6][7];
     private boolean color, gameOver, eraseBoard;
     private int scoreX, scoreY;
 
-
-
     public ConnectFour(int w, int h) {
         setUpMouseListener();
         setUpKeyListener();
-        scoreX = 0;// 1 = x
-        scoreY = 0;// 2 = y
-
+        scoreX = 0; // 1 = x
+        scoreY = 0; // 2 = y
     }
 
     public void setUpMouseListener(){
@@ -133,28 +129,21 @@ public class ConnectFour extends JPanel{
     }
 
     public void setUpKeyListener(){
-        addKeyListener(new KeyListener() {
+        addKeyListener(new KeyListener()) {
             @Override
-            public void keyTyped(KeyEvent keyEvent) {
-
-            }
-            @Override
-            public void keyPressed(KeyEvent keyEvent) {
-                    if(gameOver) {
-                        if (keyEvent.getKeyCode() == keyEvent.VK_SPACE) {
-                            eraseBoard = true;
-                            System.out.println("yeet");
-                        }
-                        gameOver = false;
-                    }
+            public void keyTyped (KeyEvent keyEvent){
 
             }
 
             @Override
-            public void keyReleased(KeyEvent keyEvent) {
+            public void keyPressed (KeyEvent keyEvent){
+            }
+
+            @Override
+            public void keyReleased (KeyEvent keyEvent){
 
             }
-        });
+        }
     }
 
     public boolean winHori(){
@@ -220,13 +209,16 @@ public class ConnectFour extends JPanel{
         return false;
     }
 
-
     public void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
 
         //background
         g2.setColor(new Color(0, 5, 180));
         g2.fillRect(0,0, 700, 900);
+
+        //scoreboard
+        g2.setColor(Color.white);
+        g2.fillRect(540, 22, 135, 70);
         g2.setColor(Color.BLACK);
         g2.setFont(new Font("Serif", Font.BOLD, 30));
         g2.drawString("Yellow:" + scoreX, 550,50);
@@ -248,32 +240,6 @@ public class ConnectFour extends JPanel{
         g2.drawLine(0, 600, 700, 600);
         g2.drawLine(0, 700, 700, 700);
 
-        if(eraseBoard){
-            //background
-            g2.setColor(new Color(0, 5, 180));
-            g2.fillRect(0,0, 700, 900);
-            g2.setColor(Color.BLACK);
-            g2.setFont(new Font("Serif", Font.BOLD, 30));
-            g2.drawString("Yellow:" + scoreX, 550,50);
-            g2.drawString("Red:" + scoreY, 550, 85);
-            //lines
-            g2.setColor(Color.BLACK);
-            g2.setStroke(new BasicStroke(4));
-            g2.drawLine(100,200,100,800);
-            g2.drawLine(200,200,200,800);
-            g2.drawLine(300,200,300,800);
-            g2.drawLine(400,200,400,800);
-            g2.drawLine(500,200,500,800);
-            g2.drawLine(600,200,600,800);
-            g2.drawLine(0,200,700,200);
-            g2.drawLine(0,300,700,300);
-            g2.drawLine(0,400,700,400);
-            g2.drawLine(0,500,700,500);
-            g2.drawLine(0,600,700,600);
-            g2.drawLine(0,700,700,700);
-            eraseBoard = false;
-        }
-
         //dots
         for (int r = 0; r < board.length; r++) {
             for (int c = 0; c < board[r].length; c++) {
@@ -284,10 +250,10 @@ public class ConnectFour extends JPanel{
                     g2.setColor(Color.yellow);
                     g2.fillOval(100 * c + 10, 100 * r + 210, 80, 80);
                 }
-
             }
         }
 
+        //click here boxes
         g2.setColor(Color.BLACK);
         g2.fillRect(10, 125, 80, 50);
         g2.setColor(Color.white);
@@ -330,7 +296,7 @@ public class ConnectFour extends JPanel{
         g2.setFont(new Font("Serif", Font.BOLD, 15));
         g2.drawString("Click Here", 615, 155);
 
-
+        //win and restart page
         if(winVert() || winHori() || winDiag()){
             g2.setColor(new Color(251, 249, 255, 225));
             g2.fillRect(0, 0, 700, 800);
@@ -340,12 +306,6 @@ public class ConnectFour extends JPanel{
             g2.setFont(new Font("Serif", Font.BOLD, 50));
             g2.drawString("Press SPACE to Restart", 93, 470);
             gameOver = true;
-
         }
-
-
-
-
-
     }
 }
